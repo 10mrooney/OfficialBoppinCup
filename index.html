@@ -13,14 +13,14 @@
     --blue-light: #2277c8;
     --gold: #C9A84C;
     --gold-light: #e4c87a;
-    --dark: #1a1a1a;
-    --dark2: #242424;
-    --dark3: #2e2e2e;
-    --mid: #3a3a3a;
+    --dark: #1a2e4a;
+    --dark2: #213554;
+    --dark3: #2a3f63;
+    --mid: #3a5278;
     --light: #f5f0e8;
     --text: #e8e0d0;
-    --muted: #999;
-    --green-dark: #1b3a2a;
+    --muted: #8aaacc;
+    --green-dark: #162640;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,7 +35,7 @@
 
   /* ── HEADER ── */
   header {
-    background: linear-gradient(135deg, var(--green-dark) 0%, #0f2218 50%, #0a1a10 100%);
+    background: linear-gradient(135deg, #1a2e4a 0%, #213554 50%, #1a2e4a 100%);
     border-bottom: 3px solid var(--gold);
     padding: 0;
     position: sticky;
@@ -84,7 +84,7 @@
   .logo-sub {
     font-size: 0.7rem;
     font-weight: 300;
-    color: #8aad8a;
+    color: #8aaacc;
     letter-spacing: 3px;
     text-transform: uppercase;
   }
@@ -97,7 +97,7 @@
   nav button {
     background: none;
     border: none;
-    color: #9ab89a;
+    color: #8aaacc;
     font-family: 'Source Sans 3', sans-serif;
     font-size: 0.85rem;
     font-weight: 600;
@@ -116,7 +116,7 @@
 
   /* ── HERO ── */
   .hero {
-    background: linear-gradient(180deg, #0a1a10 0%, var(--dark) 100%);
+    background: linear-gradient(180deg, #1a2e4a 0%, var(--dark) 100%);
     text-align: center;
     padding: 60px 24px 50px;
     position: relative;
@@ -145,7 +145,7 @@
     font-size: 0.85rem;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: #8aad8a;
+    color: #8aaacc;
     margin-top: 10px;
     font-weight: 300;
   }
@@ -659,6 +659,302 @@
     border-radius: 6px;
   }
 
+  /* ── PROFILES ── */
+  .profiles-filter {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .player-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+
+  .player-card {
+    background: var(--dark2);
+    border: 1px solid var(--mid);
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    position: relative;
+  }
+
+  .player-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    border-color: var(--gold);
+  }
+
+  .player-card-top {
+    height: 4px;
+  }
+  .player-card-top.red { background: var(--red); }
+  .player-card-top.blue { background: var(--blue); }
+  .player-card-top.captain { background: var(--gold); }
+
+  .player-card-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 20px auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    border: 3px solid var(--mid);
+    background: var(--dark3);
+  }
+
+  .player-card-photo.red { border-color: var(--red); }
+  .player-card-photo.blue { border-color: var(--blue); }
+  .player-card-photo.captain { border-color: var(--gold); }
+
+  .player-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    text-align: center;
+    padding: 0 12px;
+    line-height: 1.2;
+  }
+
+  .player-card-team {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 6px 0 4px;
+  }
+
+  .player-card-team.red { color: var(--red-light); }
+  .player-card-team.blue { color: var(--blue-light); }
+  .player-card-team.captain { color: var(--gold); }
+
+  .player-card-pts {
+    text-align: center;
+    padding: 10px 12px 18px;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .player-card-pts span {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+    display: block;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  /* ── MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--dark2);
+    border: 1px solid var(--mid);
+    border-radius: 18px;
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  }
+
+  .modal-top {
+    height: 6px;
+    border-radius: 18px 18px 0 0;
+  }
+  .modal-top.red { background: linear-gradient(90deg, var(--red), var(--red-light)); }
+  .modal-top.blue { background: linear-gradient(90deg, var(--blue), var(--blue-light)); }
+  .modal-top.captain { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--dark3);
+    border: 1px solid var(--mid);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--muted);
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    z-index: 10;
+  }
+
+  .modal-close:hover { color: var(--text); border-color: var(--text); }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 28px 28px 20px;
+  }
+
+  .modal-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: var(--dark3);
+    border: 3px solid var(--mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.6rem;
+    flex-shrink: 0;
+  }
+
+  .modal-photo.red { border-color: var(--red); }
+  .modal-photo.blue { border-color: var(--blue); }
+  .modal-photo.captain { border-color: var(--gold); }
+
+  .modal-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1.1;
+  }
+
+  .modal-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 6px;
+  }
+
+  .modal-badge.red { background: rgba(200,16,46,0.2); color: var(--red-light); border: 1px solid rgba(200,16,46,0.4); }
+  .modal-badge.blue { background: rgba(0,87,168,0.2); color: var(--blue-light); border: 1px solid rgba(0,87,168,0.4); }
+  .modal-badge.captain { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+
+  .modal-body { padding: 0 28px 28px; }
+
+  .modal-stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .modal-stat {
+    background: var(--dark3);
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+  }
+
+  .modal-stat-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .modal-stat-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .modal-section-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .win-bar-wrap {
+    background: var(--dark3);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+
+  .win-bar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .win-bar-track {
+    height: 10px;
+    background: var(--mid);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .win-bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 0.6s ease;
+  }
+
+  .win-bar-fill.red { background: linear-gradient(90deg, var(--red), var(--red-light)); }
+  .win-bar-fill.blue { background: linear-gradient(90deg, var(--blue), var(--blue-light)); }
+  .win-bar-fill.captain { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+
+  .win-bar-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 8px;
+    text-align: right;
+  }
+
+  .win-bar-pct.red { color: var(--red-light); }
+  .win-bar-pct.blue { color: var(--blue-light); }
+  .win-bar-pct.captain { color: var(--gold); }
+
+  .modal-blurb {
+    background: var(--dark3);
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.6;
+    min-height: 60px;
+  }
+
+  .modal-blurb.has-content { color: var(--text); font-style: normal; }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 680px) {
     .header-inner { flex-direction: column; gap: 14px; }
@@ -678,7 +974,7 @@
 <header>
   <div class="header-inner">
     <div class="logo-area">
-      <div class="logo-icon">⛳</div>
+      <div class="logo-icon" style="background:none;padding:2px;"><img src="https://boppincup.golf/favicon.ico" onerror="this.parentElement.innerHTML='⛳'" style="width:44px;height:44px;border-radius:50%;object-fit:cover;"></div>
       <div>
         <div class="logo-text">The Boppin Cup</div>
         <div class="logo-sub">Annual Golf Outing</div>
@@ -688,6 +984,7 @@
       <button class="active" onclick="showSection('home')">Home</button>
       <button onclick="showSection('history')">History</button>
       <button onclick="showSection('standings')">Standings</button>
+      <button onclick="showSection('profiles')">Players</button>
       <button onclick="showSection('admin')">Admin</button>
     </nav>
   </div>
@@ -756,7 +1053,51 @@
   </div>
 </div>
 
-<!-- ══════════════ ADMIN ══════════════ -->
+<!-- ══════════════ PROFILES ══════════════ -->
+<div id="sec-profiles" class="section">
+  <div class="section-title">Player Profiles</div>
+  <div class="section-divider"></div>
+  <div class="profiles-filter">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" onclick="filterProfiles('all', this)">All Players</button>
+    <button class="filter-btn red-btn" onclick="filterProfiles('red', this)">🔴 Putt Pirates</button>
+    <button class="filter-btn blue-btn" onclick="filterProfiles('blue', this)">🔵 Blue Squad</button>
+    <button class="filter-btn" onclick="filterProfiles('captain', this)">⭐ Captain's Picks</button>
+  </div>
+  <div class="player-grid" id="player-grid"></div>
+</div>
+
+<!-- PROFILE MODAL -->
+<div class="modal-overlay" id="profile-modal" onclick="closeModal(event)">
+  <div class="modal" id="modal-inner">
+    <div class="modal-top" id="modal-top"></div>
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <div class="modal-header">
+      <div class="modal-photo" id="modal-photo">👤</div>
+      <div>
+        <div class="modal-name" id="modal-name"></div>
+        <div class="modal-badge" id="modal-badge"></div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-stats-row" id="modal-stats"></div>
+      <div class="win-bar-wrap">
+        <div class="modal-section-label">Win Percentage</div>
+        <div class="win-bar-labels">
+          <span>0%</span><span>50%</span><span>100%</span>
+        </div>
+        <div class="win-bar-track">
+          <div class="win-bar-fill" id="modal-bar" style="width:0%"></div>
+        </div>
+        <div class="win-bar-pct" id="modal-pct"></div>
+      </div>
+      <div class="modal-section-label">About</div>
+      <div class="modal-blurb" id="modal-blurb"></div>
+    </div>
+  </div>
+</div>
+
+
 <div id="sec-admin" class="section">
   <div id="admin-gate" class="admin-gate">
     <h2>Admin Access</h2>
@@ -855,6 +1196,10 @@
             <label>Halves</label>
             <input type="number" id="p-halves" placeholder="0" min="0">
           </div>
+          <div class="input-group col-span-2">
+            <label>Player Blurb <span style="font-weight:300;text-transform:none;letter-spacing:0">(short bio / fun description)</span></label>
+            <textarea id="p-blurb" rows="3" placeholder="e.g. The anchor of the Putt Pirates, Julius never backs down from a match..."></textarea>
+          </div>
         </div>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;">
           <button class="btn" onclick="savePlayer()">Save Player</button>
@@ -897,6 +1242,10 @@
           <div class="input-group">
             <label>Halves</label>
             <input type="number" id="np-halves" placeholder="0" min="0">
+          </div>
+          <div class="input-group col-span-2">
+            <label>Player Blurb <span style="font-weight:300;text-transform:none;letter-spacing:0">(optional)</span></label>
+            <textarea id="np-blurb" rows="3" placeholder="Short bio or fun description..."></textarea>
           </div>
         </div>
         <button class="btn" onclick="addNewPlayer()">Add Player</button>
@@ -1017,6 +1366,7 @@ function showSection(id) {
   if (id === 'standings') renderStandings();
   if (id === 'history') renderHistory();
   if (id === 'home') renderHome();
+  if (id === 'profiles') renderProfiles();
 }
 
 // ══════════════════════════════════════════
@@ -1179,7 +1529,7 @@ function renderPlayerTable() {
     const rankClass = rank <= 3 ? 'top3' : '';
     html += `<tr>
       <td><span class="rank-num ${rankClass}">${rank}</span></td>
-      <td><span class="player-name">${p.name}</span>${p.team==='captain'?'<span class="captain-tag">Pick</span>':''}</td>
+      <td><span class="player-name" style="cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;" onclick="openProfile('${p.name.replace(/'/g,"\\'")}')">${p.name}</span>${p.team==='captain'?'<span class="captain-tag">Pick</span>':''}</td>
       <td>${teamLabel(p.team)}</td>
       <td><span class="win-pct ${pctClass}">${p.matches ? pct.toFixed(1) : '—'}%</span></td>
       <td><span class="pts-val">${p.points}</span></td>
@@ -1206,6 +1556,97 @@ function sortTable(col) {
   document.querySelectorAll('th').forEach(t => t.classList.remove('sorted'));
   event.target.classList.add('sorted');
   renderPlayerTable();
+}
+
+// ══════════════════════════════════════════
+//  PROFILES
+// ══════════════════════════════════════════
+let profileFilter = 'all';
+
+function teamName(t) {
+  if (t === 'red') return 'Putt Pirates';
+  if (t === 'blue') return 'Blue Squad';
+  return "Captain's Pick";
+}
+
+function playerEmoji(name) {
+  return '🏆';
+}
+
+function renderProfiles() {
+  const filtered = players.filter(p => profileFilter === 'all' || p.team === profileFilter);
+  const sorted = [...filtered].sort((a,b) => b.points - a.points);
+  const grid = document.getElementById('player-grid');
+  grid.innerHTML = sorted.map(p => {
+    const pct = winPct(p);
+    return `
+    <div class="player-card" onclick="openProfile('${p.name.replace(/'/g,"\\'")}')">
+      <div class="player-card-top ${p.team}"></div>
+      <div class="player-card-photo ${p.team}">${playerEmoji(p.name)}</div>
+      <div class="player-card-name">${p.name}</div>
+      <div class="player-card-team ${p.team}">${p.team === 'captain' ? "⭐ Captain's Pick" : p.team === 'red' ? '🔴 Putt Pirates' : '🔵 Blue Squad'}</div>
+      <div class="player-card-pts"><span>${p.points}</span>pts &nbsp;·&nbsp; ${p.matches ? pct.toFixed(0) + '%' : '—'} win</div>
+    </div>`;
+  }).join('');
+}
+
+function filterProfiles(f, btn) {
+  profileFilter = f;
+  document.querySelectorAll('.profiles-filter .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderProfiles();
+}
+
+function openProfile(name) {
+  const p = players.find(x => x.name === name);
+  if (!p) return;
+  const pct = winPct(p);
+
+  document.getElementById('modal-top').className = 'modal-top ' + p.team;
+  document.getElementById('modal-photo').className = 'modal-photo ' + p.team;
+  document.getElementById('modal-photo').textContent = playerEmoji(p.name);
+  document.getElementById('modal-name').textContent = p.name;
+
+  const badge = document.getElementById('modal-badge');
+  badge.className = 'modal-badge ' + p.team;
+  badge.textContent = teamName(p.team);
+
+  document.getElementById('modal-stats').innerHTML = `
+    <div class="modal-stat"><div class="modal-stat-val">${p.points}</div><div class="modal-stat-label">Points</div></div>
+    <div class="modal-stat"><div class="modal-stat-val">${p.wins}</div><div class="modal-stat-label">Wins</div></div>
+    <div class="modal-stat"><div class="modal-stat-val">${p.losses}</div><div class="modal-stat-label">Losses</div></div>
+    <div class="modal-stat"><div class="modal-stat-val">${p.halves}</div><div class="modal-stat-label">Halves</div></div>`;
+
+  const bar = document.getElementById('modal-bar');
+  bar.className = 'win-bar-fill ' + p.team;
+  setTimeout(() => { bar.style.width = (p.matches ? pct : 0) + '%'; }, 50);
+
+  const pctEl = document.getElementById('modal-pct');
+  pctEl.className = 'win-bar-pct ' + p.team;
+  pctEl.textContent = p.matches ? pct.toFixed(1) + '%' : 'No matches played';
+
+  const blurbEl = document.getElementById('modal-blurb');
+  if (p.blurb) {
+    blurbEl.textContent = p.blurb;
+    blurbEl.className = 'modal-blurb has-content';
+  } else {
+    blurbEl.textContent = 'No bio added yet.';
+    blurbEl.className = 'modal-blurb';
+  }
+
+  document.getElementById('profile-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('profile-modal')) closeModalDirect();
+}
+
+function closeModalDirect() {
+  document.getElementById('profile-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  // reset bar for next open animation
+  document.getElementById('modal-bar').style.width = '0%';
 }
 
 // ══════════════════════════════════════════
@@ -1293,6 +1734,7 @@ function loadPlayerForEdit() {
   document.getElementById('p-wins').value = p.wins;
   document.getElementById('p-losses').value = p.losses;
   document.getElementById('p-halves').value = p.halves;
+  document.getElementById('p-blurb').value = p.blurb || '';
 }
 
 function savePlayer() {
@@ -1308,6 +1750,7 @@ function savePlayer() {
     wins: parseInt(document.getElementById('p-wins').value) || 0,
     losses: parseInt(document.getElementById('p-losses').value) || 0,
     halves: parseInt(document.getElementById('p-halves').value) || 0,
+    blurb: document.getElementById('p-blurb').value.trim(),
   };
   saveData();
   showAlert('player-alert', `${name} updated!`, 'success');
@@ -1332,11 +1775,12 @@ function addNewPlayer() {
     wins: parseInt(document.getElementById('np-wins').value) || 0,
     losses: parseInt(document.getElementById('np-losses').value) || 0,
     halves: parseInt(document.getElementById('np-halves').value) || 0,
+    blurb: document.getElementById('np-blurb').value.trim(),
   });
   saveData();
   populatePlayerSelect();
   showAlert('newplayer-alert', `${name} added!`, 'success');
-  ['np-name','np-points','np-matches','np-wins','np-losses','np-halves'].forEach(id => document.getElementById(id).value = '');
+  ['np-name','np-points','np-matches','np-wins','np-losses','np-halves','np-blurb'].forEach(id => document.getElementById(id).value = '');
 }
 
 // MANAGE
@@ -1371,6 +1815,7 @@ function renderAll() {
   renderHome();
   renderHistory();
   renderStandings();
+  renderProfiles();
 }
 
 loadData();
